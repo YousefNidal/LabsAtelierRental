@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useApp } from '../store/AppContext';
 import { ROLES } from '../store/data';
 
-export default function LoginPage() {
+export default function LoginPage({ onBack }) {
   const { login, dispatch } = useApp();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -49,6 +49,11 @@ export default function LoginPage() {
           boxShadow: '0 8px 48px rgba(99,85,224,.14), 0 1px 3px rgba(0,0,0,.06)',
           border: '1px solid #e5e7eb',
         }}>
+          {onBack && (
+            <button onClick={onBack} style={{ background:'none', border:'none', color:'var(--text-muted)', cursor:'pointer', fontSize:13, marginBottom:12, display:'flex', alignItems:'center', gap:4 }}>
+              ← Back to Home
+            </button>
+          )}
           {/* Logo */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 28 }}>
             <div style={{

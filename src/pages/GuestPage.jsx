@@ -13,7 +13,7 @@ const CAT_COLOR = {
   'Casual':       '#059669',
 };
 
-export default function GuestPage() {
+export default function GuestPage({ onLogin }) {
   const { state } = useApp();
   const { products, reviews } = state;
   const [search, setSearch] = useState('');
@@ -51,6 +51,9 @@ export default function GuestPage() {
           <a href="#catalog" style={{ background: '#fff', color: 'var(--accent)', padding: '12px 28px', borderRadius: 8, fontWeight: 700, textDecoration: 'none', fontSize: 15 }}>
             Browse Catalog
           </a>
+          <button onClick={onLogin} style={{ background: 'rgba(255,255,255,.2)', color: '#fff', padding: '12px 28px', borderRadius: 8, fontWeight: 700, border: '2px solid rgba(255,255,255,.4)', cursor: 'pointer', fontSize: 15 }}>
+            Sign In
+          </button>
         </div>
       </div>
 
@@ -75,7 +78,11 @@ export default function GuestPage() {
       {/* Catalog */}
       <div id="catalog" style={{ padding: '40px' }}>
         <h2 style={{ fontSize: 26, fontWeight: 800, marginBottom: 6, color: 'var(--text-primary)' }}>Available Items</h2>
-        <p style={{ color: 'var(--text-muted)', marginBottom: 24 }}>Sign in to book any item</p>
+        <p style={{ color: 'var(--text-muted)', marginBottom: 24 }}>
+          <button onClick={onLogin} style={{ background:'none', border:'none', color:'var(--accent)', fontWeight:600, cursor:'pointer', fontSize:'inherit', textDecoration:'underline', padding:0 }}>
+            Sign in
+          </button> to book any item
+        </p>
 
         {/* Filters */}
         <div style={{ display: 'flex', gap: 12, marginBottom: 24, flexWrap: 'wrap', alignItems: 'center' }}>
@@ -135,7 +142,9 @@ export default function GuestPage() {
       {/* Footer CTA */}
       <div style={{ background: 'var(--accent)', color: '#fff', padding: '40px', textAlign: 'center' }}>
         <h2 style={{ fontSize: 24, fontWeight: 800, marginBottom: 8 }}>Ready to rent?</h2>
-        <p style={{ opacity: .85, marginBottom: 20 }}>Create an account to start booking items online.</p>
+        <button onClick={onLogin} style={{ background: '#fff', color: 'var(--accent)', border:'none', padding:'12px 32px', borderRadius:8, fontWeight:700, cursor:'pointer', fontSize:15 }}>
+          Sign In / Register
+        </button>
       </div>
     </div>
   );

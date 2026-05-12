@@ -3,6 +3,7 @@ import { useApp } from './store/AppContext';
 import { ROLES } from './store/data';
 
 import Sidebar from './components/Sidebar';
+import GuestPage from './pages/GuestPage';
 import LoginPage from './pages/LoginPage';
 import ClientDashboard from './pages/ClientDashboard';
 import ManagerDashboard from './pages/ManagerDashboard';
@@ -20,8 +21,12 @@ export default function App() {
   const { state } = useApp();
   const { currentUser } = state;
   const [page, setPage] = useState(null);
+  const [showLogin, setShowLogin] = useState(false);
 
-  if (!currentUser) return <LoginPage />;
+  if (!currentUser) {
+    if (showLogin) return <LoginPage onBack={() => setShowLogin(false)} />;
+    return <GuestPage onLogin={() => setShowLogin(true)} />;
+  }
 
   const activePage = page || DEFAULT_PAGE[currentUser.role] || 'dashboard';
 
